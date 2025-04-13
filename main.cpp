@@ -1,11 +1,11 @@
-#include "quiz.h"
 #include <iostream>
+#include "quiz.h"
+
 using namespace std;
 
 int main() {
     Quiz quiz;
 
-    quiz.addQuestion("What is the capital of France?", {"Berlin", "Madrid", "Paris", "Rome"}, 2);
     quiz.addQuestion("Which programming language is used for web development?", {"C++", "HTML", "Python", "Java"}, 1);
     quiz.addQuestion("Who developed C++?", {"Dennis Ritchie", "Bjarne Stroustrup", "James Gosling", "Guido van Rossum"}, 1);
     quiz.addQuestion("What is the file extension of C++ source files?", {".py", ".java", ".cpp", ".cxx"}, 2);
