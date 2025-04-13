@@ -6,11 +6,11 @@ void Quiz::addQuestion(const string& questionText, const vector<string>& options
     Question q;
     q.questionText = questionText;
     q.options = options;
-    q.correctAnswerIndex = correctAnswerIndex;
+    q.correctAnswerIndex = correctAnswerIndex; // This line is correct
     questions.push_back(q);
 }
 
-void Quiz::start() const {
+void Quiz::start() const { // Matches the prototype in quiz.h
     int score = 0;
 
     for (size_t i = 0; i < questions.size(); ++i) {
