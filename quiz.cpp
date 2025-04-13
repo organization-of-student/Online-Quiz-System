@@ -1,22 +1,33 @@
-#ifndef QUIZ_H
-#define QUIZ_H
+#include "quiz.h"
+#include <iostream>
+using namespace std;
 
-#include <string>
-#include <vector>
+void Quiz::addQuestion(const string& questionText, const vector<string>& options, int correctAnswerIndex) {
+    Question q;
+    q.questionText = questionText;
+    q.options = options;
+    q.correctAnswerIndex = correctAnswerIndex;
+    questions.push_back(q);
+}
 
-class Quiz {
-public:
-    struct Question {
-        std::string questionText;
-        std::vector<std::string> options;
-        int correctAnswerIndex;
-    };
-    
-    void addQuestion(const std::string& questionText, const std::vector<std::string>& options, int correctAnswerIndex);
-    void start() const;
+void Quiz::start() const {
+    int score = 0;
 
-private:
-    std::vector<Question> questions;
-};
+    for (size_t i = 0; i < questions.size(); ++i) {
+        const Question& q = questions[i];
+        cout << q.questionText << endl;
 
-#endif
+        for (size_t j = 0; j < q.options.size(); ++j) {
+            cout << j + 1 << ". " << q.options[j] << endl;
+        }
+
+        int userAnswer;
+        cout << "Your answer: ";
+        cin >> userAnswer;
+        if (userAnswer - 1 == q.correctAnswerIndex) {
+            score++;
+        }
+    }
+
+    cout << "Your score: " << score << "/" << questions.size() << endl;
+}
