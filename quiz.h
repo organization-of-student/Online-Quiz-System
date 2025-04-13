@@ -11,9 +11,9 @@ public:
         std::vector<std::string> options;
         int correctAnswerIndex;
     };
-    
+
     void addQuestion(const std::string& questionText, const std::vector<std::string>& options, int correctAnswerIndex);
-    void start() const;
+    void start() const; // Add "const" to match the implementation
 
 private:
     std::vector<Question> questions;
