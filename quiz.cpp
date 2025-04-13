@@ -1,31 +1,22 @@
-#include "quiz.h"
-#include <iostream>
-using namespace std;
+#ifndef QUIZ_H
+#define QUIZ_H
 
-Quiz::Quiz() : score(0) {}
+#include <string>
+#include <vector>
 
-void Quiz::addQuestion(const std::string& questionText, const std::vector<std::string>& options, int correctAnswer) {
-    questions.push_back({questionText, options, correctAnswer});
-}
+class Quiz {
+public:
+    struct Question {
+        std::string questionText;
+        std::vector<std::string> options;
+        int correctAnswerIndex;
+    };
+    
+    void addQuestion(const std::string& questionText, const std::vector<std::string>& options, int correctAnswerIndex);
+    void start() const;
 
-void Quiz::start() {
-    int questionNumber = 1;
-    for (const auto& question : questions) {
-        cout << "Question " << questionNumber++ << ": " << question.questionText << endl;
-        for (size_t i = 0; i < question.options.size(); i++) {
-            cout << i + 1 << ". " << question.options[i] << endl;
-        }
-        cout << "Your answer (1-" << question.options.size() << "): ";
-        int userAnswer;
-        cin >> userAnswer;
+private:
+    std::vector<Question> questions;
+};
 
-        if (userAnswer - 1 == question.correctAnswer) {
-            cout << "Correct!" << endl;
-            score++;
-        } else {
-            cout << "Wrong! The correct answer was: " << question.options[question.correctAnswer] << endl;
-        }
-        cout << endl;
-    }
-    cout << "Quiz Finished! Your score: " << score << " out of " << questions.size() << endl;
-}
+#endif
